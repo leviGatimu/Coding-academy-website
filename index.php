@@ -11,7 +11,7 @@ $instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
 
 <section class="hero-section">
     <video autoplay muted loop playsinline class="hero-bg">
-        <source src="assets/videos/hero.mp4" type="video/mp4">
+        <source src="assets/videos/hero_bg.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
