@@ -206,3 +206,70 @@ img { max-width: 100%; display: block; }
     .section-padding { padding: 60px 5%; }
     .hero-content h1 { font-size: 2.5rem; }
 }
+/* --- ADVANCED ANIMATIONS --- */
+
+/* 1. Base State: Hidden */
+.reveal-text, .reveal-card, .reveal-image {
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); /* "Quart" easing for luxury feel */
+}
+
+/* 2. Text Reveal (Slide Up + Unblur) */
+.reveal-text {
+    transform: translateY(40px);
+    filter: blur(10px);
+}
+.reveal-text.active {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* 3. Card Reveal (3D Tilt Up) */
+.reveal-card {
+    transform: translateY(60px) scale(0.95) rotateX(10deg);
+    transform-origin: center bottom;
+    filter: blur(5px);
+}
+.reveal-card.active {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+}
+
+/* 4. Image Reveal (Zoom Out Effect) */
+.reveal-image img {
+    transform: scale(1.2);
+    filter: grayscale(100%);
+    transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.reveal-image.active img {
+    transform: scale(1);
+    filter: grayscale(0%);
+}
+
+/* 5. Stagger Delays (So they don't all appear at once) */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+
+/* 6. Footer Wave & Styling Fixes */
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: #8892b0; transition: 0.3s; }
+.footer-links a:hover { color: var(--gold); padding-left: 5px; }
+
+.contact-list li { display: flex; align-items: center; gap: 10px; color: #8892b0; margin-bottom: 15px; }
+.contact-list i { color: var(--gold); }
+
+.footer-video-widget {
+    height: 140px; border-radius: 8px; overflow: hidden; position: relative;
+    border: 1px solid var(--gold); cursor: pointer; transition: transform 0.3s;
+}
+.footer-video-widget:hover { transform: scale(1.05); }
+.footer-video-widget video { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+.play-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+}
+.play-overlay i { font-size: 3rem; color: var(--white); drop-shadow: 0 4px 10px rgba(0,0,0,0.5); }

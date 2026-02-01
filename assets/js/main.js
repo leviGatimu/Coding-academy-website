@@ -1,15 +1,22 @@
-// Preloader
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    preloader.style.opacity = '0';
-    setTimeout(() => { preloader.style.display = 'none'; }, 500);
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Config: Trigger when 15% of the item is on screen
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: Stop observing once revealed for better performance
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    // Watch all elements with these classes
+    const elementsToAnimate = document.querySelectorAll('.reveal-text, .reveal-card, .reveal-image');
+    elementsToAnimate.forEach(el => observer.observe(el));
 });
-
-// Sidebar Logic
-const mobileDrawer = document.getElementById('mobileDrawer');
-const drawerOverlay = document.getElementById('drawerOverlay');
-
-function toggleMenu() {
-    mobileDrawer.classList.toggle('active');
-    drawerOverlay.classList.toggle('active');
-}
