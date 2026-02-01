@@ -1,8 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Config: Trigger when 15% of the item is on screen
+    // 1. PRELOADER
+    const preloader = document.getElementById('preloader');
+    if(preloader) {
+        window.addEventListener('load', () => {
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 500);
+        });
+    }
+
+    // 2. SCROLL REVEAL OBSERVER
     const observerOptions = {
-        threshold: 0.15,
+        threshold: 0.15, // Trigger when 15% visible
         rootMargin: "0px 0px -50px 0px"
     };
 
@@ -10,13 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                // Optional: Stop observing once revealed for better performance
-                observer.unobserve(entry.target); 
+                observer.unobserve(entry.target); // Run once
             }
         });
     }, observerOptions);
 
-    // Watch all elements with these classes
-    const elementsToAnimate = document.querySelectorAll('.reveal-text, .reveal-card, .reveal-image');
-    elementsToAnimate.forEach(el => observer.observe(el));
+    // Watch these elements
+    const revealElements = document.querySelectorAll('.reveal-text, .reveal-card, .reveal-image, .reveal-scale-up');
+    revealElements.forEach(el => observer.observe(el));
+
+    // 3. PARALLAX HERO TEXT FADE
+    const heroText = document.querySelector('.parallax-text');
+    window.addEventListener('scroll', () => {
+        let scroll = window.scrollY;
+        if (scroll < 800 && heroText) {
+            heroText.style.transform = `translateY(${scroll * 0.4}px)`; // Move down slower
+            heroText.style.opacity = 1 - (scroll / 600); // Fade out
+        }
+    });
+
 });

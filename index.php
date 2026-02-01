@@ -1,7 +1,7 @@
 <?php 
 require 'includes/db.php'; 
 
-// Fetch Data
+// Fetch Dynamic Data
 $founder = $pdo->query("SELECT * FROM settings LIMIT 1")->fetch(); 
 $students = $pdo->query("SELECT * FROM students ORDER BY id DESC LIMIT 3")->fetchAll();
 $instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
@@ -13,12 +13,13 @@ $instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
     <video autoplay muted loop playsinline class="hero-bg">
         <source src="assets/videos/hero_bg.mp4" type="video/mp4">
     </video>
-    <div class="hero-overlay"></div>
-   <div class="hero-content parallax-text">
-    <h1 class="reveal-text">Welcome to <span class="gold-text">NGA</span></h1>
-    <p class="reveal-text delay-100">Software Programming & Embedded Systems Academy</p>
-    <a href="#programs" class="btn-primary reveal-text delay-200">Explore Programs</a>
-</div>
+    <div class="hero-overlay"></div> 
+    
+    <div class="hero-content parallax-text">
+        <h1 class="reveal-text">Welcome to <span class="gold-text">NGA</span></h1>
+        <p class="reveal-text delay-100">Software Programming & Embedded Systems Academy</p>
+        <a href="#programs" class="btn-primary reveal-text delay-200">Explore Programs</a>
+    </div>
 </section>
 
 <div class="content-layer">
@@ -31,33 +32,34 @@ $instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
 
     <section id="who-we-are" class="section-padding bg-white">
         <div class="container split-layout">
-            <div class="text-block reveal-on-scroll">
-                <h4 class="sub-title">About NGA</h4>
-                <h2>More Than Just A <span class="navy-text">Coding School</span></h2>
-                <p>New Generation Academy (NGA) is a center of excellence dedicated to equipping young Rwandans with practical, production-ready skills in Software Engineering and Hardware logic.</p>
-                <p>We don't just teach syntax; we teach problem-solving, project management, and innovation.</p>
+            <div class="text-block">
+                <h4 class="sub-title reveal-text">About NGA</h4>
+                <h2 class="reveal-text delay-100">More Than Just A <span class="navy-text">Coding School</span></h2>
+                <p class="reveal-text delay-200">New Generation Academy (NGA) is a center of excellence dedicated to equipping young Rwandans with practical, production-ready skills.</p>
+                <p class="reveal-text delay-200">We don't just teach syntax; we teach problem-solving, project management, and innovation.</p>
             </div>
-           <div class="image-block reveal-image"> <img src="assets/images/about_img.jpg" alt="Students coding" class="rounded-img shadow-lg">
-</div>
+            <div class="image-block reveal-image">
+                <img src="assets/images/about_img.jpg" alt="Students coding" class="rounded-img shadow-hover">
+            </div>
         </div>
     </section>
 
     <section id="why-us" class="section-padding bg-light">
         <div class="container text-center">
-            <h4 class="sub-title reveal-on-scroll">Why Choose Us</h4>
-            <h2 class="reveal-on-scroll">The NGA Difference</h2>
+            <h4 class="sub-title reveal-text">Why Choose Us</h4>
+            <h2 class="reveal-text delay-100">The NGA Difference</h2>
             <div class="features-grid">
                 <div class="feature-card reveal-card">
                     <i class="fas fa-laptop-code"></i>
                     <h3>Hands-on Coding</h3>
                     <p>100% Practical curriculum.</p>
                 </div>
-                <div class="feature-card reveal-card delay-1">
+                <div class="feature-card reveal-card delay-100">
                     <i class="fas fa-project-diagram"></i>
                     <h3>Real Projects</h3>
                     <p>Build systems that actually work.</p>
                 </div>
-                <div class="feature-card reveal-card delay-2">
+                <div class="feature-card reveal-card delay-200">
                     <i class="fas fa-network-wired"></i>
                     <h3>Industry Links</h3>
                     <p>Connect with top tech companies.</p>
@@ -66,61 +68,58 @@ $instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
         </div>
     </section>
 
-  <div class="programs-grid">
-    <div class="program-card reveal-card"> <div class="card-icon"><i class="fas fa-code"></i></div>
-        <h3>Software Programming</h3>
-        <p>HTML, CSS, JS, PHP, MySQL</p>
-    </div>
-    <div class="program-card reveal-card delay-100"> <div class="card-icon"><i class="fas fa-microchip"></i></div>
-        <h3>Embedded Systems</h3>
-        <p>C++, Arduino, IoT</p>
-    </div>
-    <div class="program-card reveal-card delay-200"> <div class="card-icon"><i class="fas fa-users-cog"></i></div>
-        <h3>Leadership</h3>
-        <p>Design Thinking</p>
-    </div>
-</div>
-                <div class="program-card reveal-from-bottom delay-1">
+    <section id="programs" class="section-padding bg-white">
+        <div class="container">
+            <h2 class="text-center reveal-text">Our Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card reveal-card">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>Software Programming</h3>
+                    <p>HTML, CSS, JS, PHP, MySQL</p>
+                </div>
+                <div class="program-card reveal-card delay-100">
                     <div class="card-icon"><i class="fas fa-microchip"></i></div>
                     <h3>Embedded Systems</h3>
-                    <p>C++, Arduino, IoT, Electronics</p>
+                    <p>C++, Arduino, IoT</p>
                 </div>
-                <div class="program-card reveal-from-bottom delay-2">
+                <div class="program-card reveal-card delay-200">
                     <div class="card-icon"><i class="fas fa-users-cog"></i></div>
-                    <h3>Leadership & UI/UX</h3>
-                    <p>Design Thinking & Management</p>
+                    <h3>Leadership</h3>
+                    <p>Design Thinking</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="founder" class="section-padding bg-navy text-white" style="overflow: hidden;">
+    <section id="founder" class="section-padding bg-navy text-white">
         <div class="container split-layout align-center">
             <div class="image-block reveal-scale-up">
                 <img src="assets/images/founder.jpg" alt="Founder" class="founder-img">
             </div>
-            <div class="text-block reveal-from-right">
-                <h4 class="gold-text">Visionary Leadership</h4>
-                <h2>Meet The Founder</h2>
-                <blockquote class="founder-quote">
+            <div class="text-block">
+                <h4 class="gold-text reveal-text">Visionary Leadership</h4>
+                <h2 class="reveal-text delay-100">Meet The Founder</h2>
+                <blockquote class="founder-quote reveal-text delay-200">
                     "Our mission is to unlock the potential of the African youth through technology and innovation."
                 </blockquote>
-                <p><strong>Mr. Jean Claude Tuyisenge</strong></p>
-                <p class="role">Managing Director</p>
+                <div class="reveal-text delay-300">
+                    <p><strong>Mr. Jean Claude Tuyisenge</strong></p>
+                    <p class="role" style="color:#aaa;">Managing Director</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="students" class="section-padding bg-light">
         <div class="container">
-            <div class="section-header-flex reveal-on-scroll">
+            <div class="section-header-flex reveal-text" style="display:flex; justify-content:space-between; align-items:center;">
                 <h2>Our Top Students</h2>
-                <a href="students.php" class="btn-text">See More Students &rarr;</a>
+                <a href="students.php" class="btn-text" style="color:var(--navy); font-weight:bold; border-bottom:2px solid var(--gold);">See More &rarr;</a>
             </div>
             
             <div class="grid-3">
                 <?php foreach($students as $k => $student): ?>
-                <div class="profile-card reveal-card delay-<?= $k ?>">
+                <div class="profile-card reveal-card delay-<?= $k ?>00">
                     <img src="<?= htmlspecialchars($student['image_path']) ?>" alt="<?= htmlspecialchars($student['name']) ?>">
                     <div class="info">
                         <h3><?= htmlspecialchars($student['name']) ?></h3>
@@ -135,14 +134,10 @@ $instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
 
     <section id="instructors" class="section-padding bg-white">
         <div class="container">
-            <div class="section-header-flex reveal-on-scroll">
-                <h2>Expert Instructors</h2>
-                <a href="instructors.php" class="btn-text">See More Instructors &rarr;</a>
-            </div>
-            
+            <h2 class="reveal-text">Expert Instructors</h2>
             <div class="grid-3">
                 <?php foreach($instructors as $k => $inst): ?>
-                <div class="profile-card reveal-card delay-<?= $k ?>">
+                <div class="profile-card reveal-card delay-<?= $k ?>00">
                     <img src="<?= htmlspecialchars($inst['image_path']) ?>" alt="<?= htmlspecialchars($inst['name']) ?>">
                     <div class="info">
                         <h3><?= htmlspecialchars($inst['name']) ?></h3>
