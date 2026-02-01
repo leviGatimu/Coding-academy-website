@@ -1,11 +1,15 @@
-/* includes/db.php */
 <?php
 $host = 'localhost';
 $dbname = 'nga_school_db';
 $user = 'root';
-$pass = ''; // Set your password
+$pass = ''; // Leave empty for XAMPP default
+
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) { die("DB Connection failed"); }
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+} catch(PDOException $e) {
+    // If DB fails, stop everything and show why
+    die("Database Connection Failed: " . $e->getMessage());
+}
 ?>

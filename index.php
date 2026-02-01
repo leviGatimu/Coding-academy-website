@@ -1,10 +1,16 @@
 <?php 
 require 'includes/db.php'; 
 
-// Fetch Dynamic Data
-$founder = $pdo->query("SELECT * FROM settings LIMIT 1")->fetch(); 
-$students = $pdo->query("SELECT * FROM students ORDER BY id DESC LIMIT 3")->fetchAll();
-$instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
+// Fetch Dynamic Data (with fail-safes if DB is empty)
+try {
+    $founder = $pdo->query("SELECT * FROM settings LIMIT 1")->fetch(); 
+    $students = $pdo->query("SELECT * FROM students ORDER BY id DESC LIMIT 3")->fetchAll();
+    $instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
+} catch (Exception $e) {
+    // Silent fail or default empty arrays
+    $students = [];
+    $instructors = [];
+}
 ?>
 
 <?php include 'includes/header.php'; ?>
@@ -24,13 +30,13 @@ $instructors = $pdo->query("SELECT * FROM instructors LIMIT 3")->fetchAll();
 
 <div class="content-layer">
     
-    <div class="wave-divider">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+    <div class="wave-container">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#ffffff" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192V320H1392C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320H0Z"></path>
         </svg>
     </div>
 
-    <section id="who-we-are" class="section-padding bg-white">
+    <section id="who-we-are" class="section-padding bg-white" style="position: relative; z-index: 20;">
         <div class="container split-layout">
             <div class="text-block">
                 <h4 class="sub-title reveal-text">About NGA</h4>
