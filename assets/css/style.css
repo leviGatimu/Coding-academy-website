@@ -90,7 +90,10 @@ img { max-width: 100%; display: block; }
 .sticky-hero {
     position: sticky; top: 0; height: 100vh; width: 100%;
     z-index: 1; overflow: hidden;
-    display: flex; align-items: center; justify-content: center; text-align: center;
+    display: flex; 
+    align-items: flex-start; /* Align top, not center */
+    padding-top: 25vh; /* Push down 25% of screen height */
+    justify-content: center; text-align: center;
 }
 .hero-bg {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -118,34 +121,35 @@ img { max-width: 100%; display: block; }
     position: relative;
     z-index: 10;
     background: var(--white);
-    /* No margin top needed, sticky hero handles the scroll effect */
 }
 
-/* The Wave Container */
 .wave-container {
     position: absolute;
-    top: -150px; /* Pulls the wave UP over the video */
+    /* This negative top pulls the wave up over the video */
+    top: -150px; 
     left: 0;
     width: 100%;
+    /* Height controls how "tall" the wave spike is */
+    height: 152px; 
     overflow: hidden;
     line-height: 0;
     z-index: 11;
 }
 
-/* The SVG itself */
 .wave-container svg {
-    position: relative;
     display: block;
-    width: calc(100% + 1.3px);
-    height: 151px; /* Height of the wave */
-    transform: rotate(180deg); /* Rotate to point UP into the video */
-    fill: var(--white);
+    width: 100%;
+    height: 100%;
+    /* This ensures it stretches to fill width without gaps */
+    transform: scale(1.02); 
 }
 
 /* Ensure the first section blends perfectly */
 #who-we-are {
-    padding-top: 50px; /* Adjust padding since wave takes space */
-    background: var(--white); /* Must match wave fill color */
+    padding-top: 50px; 
+    background: var(--white);
+    position: relative;
+    z-index: 20;
 }
 
 /* =========================================
